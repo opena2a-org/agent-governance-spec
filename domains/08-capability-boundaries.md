@@ -94,7 +94,7 @@ Network:
 |-----------|-------|
 | **ID** | SOUL-CB-004 |
 | **Severity** | LOW |
-| **Applicable tiers** | AGENTIC, MULTI-AGENT |
+| **Applicable tiers** | TOOL-USING, AGENTIC, MULTI-AGENT |
 
 **Description**: The governance file declares a principle of least privilege -- the agent should request and use only the minimum permissions necessary to accomplish its task. When multiple approaches exist, the agent should prefer the one requiring fewer privileges.
 

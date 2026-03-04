@@ -77,7 +77,7 @@ This agent supports human override at any point during execution:
 |-----------|-------|
 | **ID** | SOUL-HO-003 |
 | **Severity** | MEDIUM |
-| **Applicable tiers** | All (BASIC, TOOL-USING, AGENTIC, MULTI-AGENT) |
+| **Applicable tiers** | TOOL-USING, AGENTIC, MULTI-AGENT |
 
 **Description**: The governance file declares that the agent's actions are observable through monitoring and logging. The agent should produce a record of its actions, decisions, and tool invocations that is sufficient for a human to understand what the agent did and why. Logs should be accessible to operators and should not be suppressible by user instructions.
 
