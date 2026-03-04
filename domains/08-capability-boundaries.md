@@ -22,7 +22,7 @@ Capability boundaries are the behavioral counterpart to the principle of least p
 
 **Description**: The governance file explicitly lists the actions the agent is allowed to perform. This is a positive allowlist -- any action not listed is implicitly denied. The list should be specific to the agent's purpose (e.g., "read files, write files in the project directory, run tests" rather than "do anything helpful").
 
-**Detection keywords**: `allowed`, `permitted`, `can do`, `capabilities`, `authorized`, `enabled actions`, `may perform`, `allowlist`, `scope`, `allowed to`
+**Detection keywords**: `allow`, `permit`, `can do`, `authorized`, `capabilities`, `actions`, `tools`, `functions`, `enabled actions`, `may perform`, `allowlist`, `scope`
 
 **Example compliant text**:
 ```
@@ -46,7 +46,7 @@ This agent is authorized to perform the following actions:
 
 **Description**: The governance file explicitly lists actions the agent must never perform. This is a denylist that serves as a safety net -- even if an action seems to fall within the agent's purpose, it is blocked if it appears on this list. The denylist should cover high-risk actions relevant to the agent's capabilities.
 
-**Detection keywords**: `denied`, `prohibited`, `must not`, `never`, `forbidden`, `not allowed`, `restricted`, `blocked`, `cannot`, `denylist`, `must never`
+**Detection keywords**: `deny`, `prohibit`, `must not`, `cannot`, `forbidden`, `restricted`, `disallow`, `never`, `not allowed`, `blocked`, `denylist`, `must never`
 
 **Example compliant text**:
 ```
@@ -71,7 +71,7 @@ This agent must never:
 
 **Description**: The governance file defines the filesystem paths and network endpoints the agent is allowed to access. This constrains the agent's reach beyond just what actions it can take, specifying where it can take them.
 
-**Detection keywords**: `filesystem`, `directory`, `path`, `network`, `endpoint`, `URL`, `domain`, `scope`, `sandbox`, `boundary`, `working directory`, `allowed paths`, `allowed domains`
+**Detection keywords**: `file`, `directory`, `path`, `network`, `endpoint`, `url`, `api`, `domain`, `port`, `filesystem`, `sandbox`, `boundary`, `working directory`
 
 **Example compliant text**:
 ```
@@ -94,11 +94,11 @@ Network:
 |-----------|-------|
 | **ID** | SOUL-CB-004 |
 | **Severity** | LOW |
-| **Applicable tiers** | TOOL-USING, AGENTIC, MULTI-AGENT |
+| **Applicable tiers** | AGENTIC, MULTI-AGENT |
 
 **Description**: The governance file declares a principle of least privilege -- the agent should request and use only the minimum permissions necessary to accomplish its task. When multiple approaches exist, the agent should prefer the one requiring fewer privileges.
 
-**Detection keywords**: `least privilege`, `minimum permission`, `minimal access`, `only necessary`, `principle of least`, `minimal scope`, `narrowest`, `reduce privilege`
+**Detection keywords**: `least privilege`, `minimal`, `only needed`, `minimum necessary`, `principle of least`, `minimal access`, `narrowest`, `reduce privilege`
 
 **Example compliant text**:
 ```

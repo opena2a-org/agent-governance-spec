@@ -54,55 +54,54 @@ Routine operations that do not require approval:
 | **Severity** | MEDIUM |
 | **Applicable tiers** | TOOL-USING, AGENTIC, MULTI-AGENT |
 
-**Description**: The governance file defines how humans can override or correct agent behavior during execution. This includes how to cancel an in-progress action, how to undo a completed action, and how to modify the agent's behavior for the current session without editing the governance file.
+**Description**: The governance file declares that humans can intervene in and override the agent's behavior at any point during execution. The override mechanism should be accessible, immediate, and not require technical expertise to invoke. The agent must respect overrides without resistance, argument, or delay.
 
-**Detection keywords**: `override`, `correct`, `undo`, `cancel`, `intervene`, `interrupt`, `take over`, `manual control`, `human override`, `correction`, `override mechanism`
+**Detection keywords**: `override`, `intervene`, `manual`, `human control`, `takeover`, `escalat`, `hand off`, `correction`, `redirect`, `interrupt`, `course correct`, `manual control`, `human intervention`
 
 **Example compliant text**:
 ```
-## Override Mechanism
-Users can override agent behavior at any time:
-- Type "stop" or "cancel" to halt the current operation immediately
-- Type "undo" to reverse the last action if it was reversible
-- Type "pause" to suspend autonomous execution and switch to step-by-step mode
-- Any explicit user instruction takes immediate effect, even if it contradicts the agent's current plan
-- The user can modify the agent's approach by providing new constraints mid-task
+## Override and Escalation
+This agent supports human override at any point during execution:
+- The user can redirect, correct, or cancel any in-progress task
+- When overridden, the agent immediately stops its current action and awaits new instructions
+- The agent does not argue against overrides or attempt to convince the user to let it continue
+- If the agent encounters a situation outside its governance scope, it escalates to the user rather than making assumptions
+- In multi-agent contexts, the human operator can override any agent in the system through the orchestrator
 ```
 
 ---
 
-### SOUL-HO-003: Monitoring and Logging
+### SOUL-HO-003: Monitoring/Logging
 
 | Attribute | Value |
 |-----------|-------|
 | **ID** | SOUL-HO-003 |
 | **Severity** | MEDIUM |
-| **Applicable tiers** | TOOL-USING, AGENTIC, MULTI-AGENT |
+| **Applicable tiers** | All (BASIC, TOOL-USING, AGENTIC, MULTI-AGENT) |
 
-**Description**: The governance file declares that the agent's actions are logged or otherwise observable for post-hoc review. This enables operators and users to audit what the agent did, verify that governance constraints were followed, and investigate incidents.
+**Description**: The governance file declares that the agent's actions are observable through monitoring and logging. The agent should produce a record of its actions, decisions, and tool invocations that is sufficient for a human to understand what the agent did and why. Logs should be accessible to operators and should not be suppressible by user instructions.
 
-**Detection keywords**: `log`, `logging`, `monitor`, `audit`, `trace`, `record`, `observable`, `tracking`, `audit trail`, `event log`, `activity log`, `monitoring`, `observability`
+**Detection keywords**: `monitor`, `log`, `audit`, `track`, `observe`, `record`, `trace`, `accountability`, `audit trail`, `action log`, `observability`, `logging`, `audit log`, `event log`
 
 **Example compliant text**:
 ```
 ## Monitoring and Logging
-This agent supports observability:
-- All tool calls and their results are logged for audit purposes
-- Decisions that involve governance constraints (e.g., declining a request) are logged with the reason
-- Error conditions and unexpected states are logged with diagnostic context
-- Logs do not contain PII or credentials (see Data Handling section)
-- Operators can review agent activity through the audit log
-- The agent does not tamper with or suppress its own logs
+This agent maintains an observable record of its actions:
+- Log all tool invocations with their parameters and results
+- Log decision points where the agent chose between multiple approaches, including the rationale
+- Logs are accessible to the operator and cannot be suppressed or redacted by user instructions
+- In autonomous execution mode, produce a structured summary of all actions taken, ordered chronologically
+- Sensitive data (credentials, PII) is redacted from logs in accordance with the Data Handling policy
 ```
 
 ---
 
 ## Relationship to Model Specifications
 
-Human oversight is a central concern in AI safety frameworks:
+Anthropic's model specification places strong emphasis on human oversight as a foundational safety property. The specification states that humans should be able to adjust, correct, retrain, or shut down AI systems as needed. AGS Human Oversight provides the declared format for these principles:
 
-- SOUL-HO-001 (Approval gates) extends Anthropic's concept of "supporting human oversight" from a general principle to specific, declared checkpoints that can be audited.
-- SOUL-HO-002 (Override mechanism) maps to the controllability requirements in both Anthropic and OpenAI specifications -- the ability for humans to correct, redirect, or stop the system.
-- SOUL-HO-003 (Monitoring/logging) supports the transparency requirements in AI governance frameworks (EU AI Act, NIST AI RMF) by ensuring that agent behavior is observable and auditable.
+- SOUL-HO-001 (Approval gates) corresponds to Anthropic's guidance that agents should check in with users before taking consequential actions, especially those with irreversible effects
+- SOUL-HO-002 (Override mechanism) corresponds to the principle that AI systems should not subvert human control and should be responsive to correction and redirection
+- SOUL-HO-003 (Monitoring/logging) supports the broader principle that AI behavior should be transparent and auditable, enabling humans to understand and evaluate what the agent is doing
 
-The EU AI Act's requirements for high-risk AI systems include human oversight provisions that map directly to this domain. AGS provides a practical, file-level mechanism for declaring and auditing compliance with these requirements.
+OpenAI's agentic safety guidelines similarly recommend human-in-the-loop confirmation for high-stakes actions and structured logging for auditability. Both specifications treat human oversight not as a constraint on agent capability but as a requirement for responsible deployment. AGS Human Oversight controls standardize how these mechanisms are documented in governance files.
