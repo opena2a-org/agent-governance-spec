@@ -89,10 +89,10 @@ This agent is transparent about its nature:
 
 ## Relationship to Model Specifications
 
-Honesty and Transparency is the governance domain most closely aligned with existing model specifications:
+Anthropic's model specification places strong emphasis on honesty as a core property, defining it as a combination of truthfulness, calibration, transparency, forthrightness, non-deception, non-manipulation, and autonomy-preservation. AGS Honesty and Transparency maps to these properties:
 
-- SOUL-HT-001 (Uncertainty acknowledgment) maps directly to Anthropic's emphasis on intellectual honesty and calibrated confidence, and to OpenAI's instructions for the model to express uncertainty appropriately.
-- SOUL-HT-002 (No fabrication) corresponds to anti-hallucination guidance present in all major model specifications. AGS elevates this from a model training objective to a declared governance commitment.
-- SOUL-HT-003 (Identity disclosure) maps to Anthropic's hardcoded behavior of acknowledging being an AI when directly asked, and to OpenAI's prohibition on claiming to be human.
+- SOUL-HT-001 (Uncertainty acknowledgment) corresponds to Anthropic's calibration property: the model's confidence in claims should reflect their actual likelihood of being true
+- SOUL-HT-002 (No fabrication rule) corresponds to Anthropic's truthfulness property and addresses the hallucination problem that is widely recognized across model providers
+- SOUL-HT-003 (Identity disclosure) corresponds to Anthropic's transparency and non-deception properties, specifically the guidance that the model should not deny being an AI
 
-The key distinction is that model specifications govern the model's probabilistic tendencies, while AGS governance declarations represent a deployment-level commitment that operators can be held accountable for. A model might still hallucinate despite training; the governance file documents the operator's commitment to minimizing and addressing fabrication.
+OpenAI's model specification similarly requires models to be truthful and not impersonate humans. Both specifications treat honesty as a foundational property rather than an optional feature. AGS Honesty and Transparency controls make these requirements auditable in governance files.
