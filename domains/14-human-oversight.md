@@ -2,13 +2,15 @@
 
 ## Purpose
 
-The Human Oversight domain establishes requirements for human approval gates, override mechanisms, and monitoring of agent behavior. It ensures that humans maintain meaningful control over agent actions, especially for high-risk or consequential operations.
+The Human Oversight domain governs the mechanisms by which humans maintain control over AI agent behavior. It defines requirements for approval gates before high-stakes actions, override mechanisms for correcting or halting agent behavior, and monitoring capabilities for observing what the agent is doing.
 
 ## Rationale
 
-As agents become more capable and autonomous, the risk of unintended consequences grows. A coding agent might deploy to production, a financial agent might execute transactions, or a customer service agent might make commitments that bind the organization. Without human oversight mechanisms, there is no checkpoint between the agent's decision and the real-world consequence.
+Autonomous AI agents are designed to act independently, but independence without oversight creates unacceptable risk. An agent that deploys code, sends communications, modifies data, or makes purchases without human review can cause harm that is difficult or impossible to reverse. Even well-governed agents make mistakes -- they misunderstand context, encounter edge cases not covered by their governance, or operate on stale information.
 
-Human oversight governance does not mean humans must approve every action -- that would negate the efficiency benefits of automation. Instead, it defines which actions require approval (approval gates), how humans can intervene when needed (override mechanisms), and how agent behavior is tracked for review (monitoring and logging).
+Human oversight is not a limitation on agent capability; it is an architectural requirement for responsible deployment. The goal is not to approve every action (which would eliminate the efficiency gains of automation) but to establish approval gates at high-stakes decision points and maintain the ability to intervene when something goes wrong.
+
+The consequences of insufficient human oversight are material: unauthorized financial transactions, data breaches from misconfigured tools, incorrect communications sent to customers, and production systems damaged by untested changes. These failures become harder to detect and correct the longer an agent operates without oversight.
 
 ## Controls
 
@@ -20,26 +22,26 @@ Human oversight governance does not mean humans must approve every action -- tha
 | **Severity** | HIGH |
 | **Applicable tiers** | TOOL-USING, AGENTIC, MULTI-AGENT |
 
-**Description**: The governance file defines specific actions or categories of actions that require explicit human approval before the agent proceeds. These gates should be calibrated to the risk level of the actions -- routine actions proceed without approval, while high-risk or irreversible actions require explicit confirmation.
+**Description**: The governance file defines specific actions or categories of actions that require human approval before execution. The agent must pause and request confirmation before taking these actions. Approval gates should be calibrated to the risk level -- routine operations proceed without approval, while high-stakes operations require explicit confirmation.
 
-**Detection keywords**: `approval`, `confirm`, `confirmation`, `human approval`, `user approval`, `ask before`, `require permission`, `gate`, `checkpoint`, `authorization`, `consent`, `approval gate`, `must confirm`
+**Detection keywords**: `approval`, `confirm`, `human-in-the-loop`, `review`, `authorize`, `sign-off`, `gate`, `confirmation`, `ask before`, `require approval`, `user confirmation`, `explicit consent`, `permission`
 
 **Example compliant text**:
 ```
 ## Approval Gates
-The following actions require explicit user approval before execution:
-- Deploying code to any environment (staging, production)
-- Deleting files, directories, or database records
-- Making purchases or financial transactions
-- Sending emails, messages, or notifications on behalf of the user
-- Modifying access controls, permissions, or security settings
-- Installing or updating system-level packages or dependencies
+This agent requires human approval before the following actions:
+- Executing any command that modifies production systems or data
+- Sending emails, messages, or other communications on behalf of the user
+- Making purchases, financial transactions, or resource provisioning requests
+- Deleting files, databases, or other persistent storage
+- Publishing or deploying code to any environment
+- Granting or modifying access permissions
 
-Routine actions that do not require approval:
-- Reading files and directories within the project scope
-- Running tests and linting
-- Creating new files within the project directory
-- Making git commits on the current branch
+Routine operations that do not require approval:
+- Reading files and documentation
+- Running tests in development environments
+- Searching and retrieving information
+- Generating code suggestions for user review
 ```
 
 ---
