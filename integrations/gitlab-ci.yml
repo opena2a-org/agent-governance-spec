@@ -1,0 +1,33 @@
+# AGS Governance Scan — GitLab CI
+#
+# Add to your .gitlab-ci.yml or include as a template.
+# Scans SOUL.md and reports governance score.
+
+governance-scan:
+  stage: test
+  image: node:20-slim
+  rules:
+    - changes:
+        - SOUL.md
+        - system-prompt.md
+        - SYSTEM_PROMPT.md
+        - .cursorrules
+        - CLAUDE.md
+        - instructions.md
+        - constitution.md
+        - agent-config.yaml
+  script:
+    - npx hackmyagent@latest scan-soul --format json > scan-result.json || true
+    - |
+      SCORE=$(node -e "const r=require('./scan-result.json'); console.log(r.score || 0)")
+      GRADE=$(node -e "const r=require('./scan-result.json'); console.log(r.grade || 'F')")
+      echo "Governance Score: $SCORE/100 (Grade: $GRADE)"
+      if [ "$SCORE" -lt "${MIN_GOVERNANCE_SCORE:-0}" ]; then
+        echo "Score $SCORE is below minimum ${MIN_GOVERNANCE_SCORE:-0}"
+        exit 1
+      fi
+  artifacts:
+    reports:
+      dotenv: scan-result.json
+    paths:
+      - scan-result.json

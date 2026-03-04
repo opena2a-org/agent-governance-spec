@@ -1,0 +1,138 @@
+# AGS Governance Scan — GitHub Action
+#
+# Add this to your repo at .github/workflows/governance.yml
+# Scans SOUL.md on every PR and comments with governance score.
+#
+# Requirements:
+#   - Node.js 18+
+#   - SOUL.md (or equivalent governance file) in repo root
+#
+# Optional: Set minimum score with fail-below input
+
+name: Agent Governance Scan
+
+on:
+  pull_request:
+    branches: [main, master]
+    paths:
+      - 'SOUL.md'
+      - 'system-prompt.md'
+      - 'SYSTEM_PROMPT.md'
+      - '.cursorrules'
+      - '.github/copilot-instructions.md'
+      - 'CLAUDE.md'
+      - '.clinerules'
+      - 'instructions.md'
+      - 'constitution.md'
+      - 'agent-config.yaml'
+  push:
+    branches: [main, master]
+    paths:
+      - 'SOUL.md'
+      - 'system-prompt.md'
+      - 'SYSTEM_PROMPT.md'
+      - '.cursorrules'
+      - '.github/copilot-instructions.md'
+      - 'CLAUDE.md'
+      - '.clinerules'
+      - 'instructions.md'
+      - 'constitution.md'
+      - 'agent-config.yaml'
+
+jobs:
+  scan-soul:
+    name: Behavioral Governance Scan
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run governance scan
+        id: scan
+        run: |
+          npx hackmyagent@latest scan-soul --format json > scan-result.json 2>&1 || true
+          SCORE=$(jq -r '.score // 0' scan-result.json 2>/dev/null || echo "0")
+          GRADE=$(jq -r '.grade // "F"' scan-result.json 2>/dev/null || echo "F")
+          CONFORMANCE=$(jq -r '.conformance // "NONE"' scan-result.json 2>/dev/null || echo "NONE")
+          FILE=$(jq -r '.file // "none"' scan-result.json 2>/dev/null || echo "none")
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
+          echo "grade=$GRADE" >> $GITHUB_OUTPUT
+          echo "conformance=$CONFORMANCE" >> $GITHUB_OUTPUT
+          echo "file=$FILE" >> $GITHUB_OUTPUT
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const score = '${{ steps.scan.outputs.score }}';
+            const grade = '${{ steps.scan.outputs.grade }}';
+            const conformance = '${{ steps.scan.outputs.conformance }}';
+            const file = '${{ steps.scan.outputs.file }}';
+            const fs = require('fs');
+
+            let domainTable = '';
+            try {
+              const result = JSON.parse(fs.readFileSync('scan-result.json', 'utf8'));
+              if (result.domains) {
+                domainTable = '\n| Domain | Score | Status |\n|--------|-------|--------|\n';
+                for (const [name, data] of Object.entries(result.domains)) {
+                  const d = data;
+                  const pct = Math.round((d.found / d.total) * 100);
+                  const status = pct >= 75 ? 'Pass' : pct >= 50 ? 'Partial' : 'Needs work';
+                  domainTable += `| ${name} | ${d.found}/${d.total} (${pct}%) | ${status} |\n`;
+                }
+              }
+            } catch {}
+
+            const body = `## Agent Governance Scan
+
+            **Score:** ${score}/100 (Grade: ${grade})
+            **Conformance:** ${conformance}
+            **File:** \`${file}\`
+            ${domainTable}
+
+            *Scanned with [HackMyAgent](https://github.com/opena2a-org/hackmyagent) against the [Agent Governance Specification](https://github.com/opena2a-org/agent-governance-spec).*
+
+            To improve your score: \`npx hackmyagent harden-soul\`
+            `.replace(/            /g, '');
+
+            // Find and update existing comment or create new one
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.body.includes('Agent Governance Scan'));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
+
+      - name: Check minimum score
+        if: always()
+        run: |
+          SCORE=${{ steps.scan.outputs.score }}
+          MIN_SCORE="${{ inputs.fail-below || '0' }}"
+          if [ "$SCORE" -lt "$MIN_SCORE" ]; then
+            echo "Governance score $SCORE is below minimum $MIN_SCORE"
+            exit 1
+          fi
