@@ -14,13 +14,12 @@ The AI agent ecosystem has standards for several layers of the stack, but behavi
 |-------|-------------|----------------|
 | Foundation model | [Anthropic Soul](https://www.anthropic.com/research/claude-character), [OpenAI Model Spec](https://cdn.openai.com/spec/model-spec-2024-05-08.html) | How the base model should behave |
 | Agent persona | [SoulSpec](https://soulspec.org) | Personality, tone, and character traits |
-| Runtime enforcement | [OAGS](https://github.com/sekuire/oags) | Structural policy enforcement at the platform level |
+| Agent capabilities | [Agent Skills](https://agentskills.io) | Procedural knowledge and tools |
 | Infrastructure | [NIST AI Agent Standards](https://www.nist.gov/artificial-intelligence) | Identity, interoperability, and infrastructure |
-| Workflow portability | [Open Agent Spec](https://github.com/oracle/open-agent-spec) | Agent workflow definitions |
 | Coding instructions | [AGENTS.md](https://github.com/anthropics/agents-md) | Instructions for AI coding agents |
 | **Behavioral governance** | **AGS (this specification)** | **Per-agent safety constraints, scope boundaries, oversight requirements** |
 
-AGS fills the layer between model specifications (what the model can do) and runtime enforcement (what the platform enforces). It is the agent's own declared behavioral contract: what it will and will not do, who it trusts, how it handles sensitive data, and when it requires human approval.
+AGS fills the layer between model specifications (what the model can do) and deployment behavior (what the agent actually does). It is the agent's own declared behavioral contract: what it will and will not do, who it trusts, how it handles sensitive data, and when it requires human approval. AGS also provides runtime enforcement through automated scanning and CI/CD integration.
 
 ---
 
@@ -105,8 +104,8 @@ Governance coverage is scored per domain and rolled up into an overall score:
 
 - **Per-domain score**: (controls detected / total applicable controls) x 100
 - **Overall score**: Average of all applicable domain scores
-- **Grade**: A (80-100), B (60-79), C (40-59), D (20-39), F (0-19)
-- **Critical floor**: If any CRITICAL control is missing, maximum grade is C regardless of score
+- **Level**: Hardened (80-100), Standard (60-79), Developing (40-59), Initial (20-39), Unscored (0-19)
+- **Critical floor**: If any CRITICAL control is missing, maximum level is Developing regardless of score
 
 See [scoring.md](scoring.md) for the full scoring methodology with worked examples.
 
@@ -118,7 +117,7 @@ AGS is designed to complement, not compete with, existing specifications:
 
 - **Anthropic Soul / OpenAI Model Spec**: These govern the foundation model's behavior. AGS governs the deployed agent built on top of that model. An agent can comply with AGS regardless of which model it uses.
 - **SoulSpec (soulspec.org)**: Defines agent persona and personality. AGS defines agent governance. A SOUL.md can coexist with a SoulSpec persona file -- they address different concerns.
-- **OAGS (Sekuire)**: Runtime structural governance (what the platform enforces). AGS is declared behavioral governance (what the agent commits to). OAGS can enforce AGS controls at runtime.
+- **Agent Skills (agentskills.io)**: Defines agent capabilities and procedural knowledge. AGS defines behavioral constraints. Skills say what the agent can do; AGS says what it must not do.
 - **NIST AI Agent Standards**: Covers infrastructure, identity, and interoperability. AGS covers behavioral safety. They are complementary layers.
 - **AGENTS.md**: Instructions for AI coding agents about how to work with a codebase. AGS defines safety and governance boundaries. An agent can follow both AGENTS.md (for coding conventions) and SOUL.md (for safety constraints).
 - **OASB (Open Agent Security Benchmark)**: OASB v1 covers infrastructure security (domains 1-6). AGS covers behavioral governance (domains 7-14). Together they provide full-stack agent security assessment.
