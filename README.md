@@ -121,6 +121,7 @@ AGS is designed to complement, not compete with, existing specifications:
 - **NIST AI Agent Standards**: Covers infrastructure, identity, and interoperability. AGS covers behavioral safety. They are complementary layers.
 - **AGENTS.md**: Instructions for AI coding agents about how to work with a codebase. AGS defines safety and governance boundaries. An agent can follow both AGENTS.md (for coding conventions) and SOUL.md (for safety constraints).
 - **OASB (Open Agent Security Benchmark)**: OASB v1 covers infrastructure security (domains 1-6). AGS covers behavioral governance (domains 7-14). Together they provide full-stack agent security assessment.
+- **Awesome Agent Souls**: A [curated collection of 100+ SOUL.md templates](https://github.com/opena2a-org/awesome-agent-souls) organized by role, industry, organization type, and fleet. Use these as starting points instead of writing governance files from scratch.
 
 ---
 
