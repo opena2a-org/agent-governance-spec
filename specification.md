@@ -27,8 +27,8 @@ AGS governs the **deployment layer** -- the behavioral contract of a specific ag
 The Open Agent Security Benchmark (OASB) provides a comprehensive security assessment framework for AI agents:
 
 - **OASB v1** covers infrastructure security: domains 1 (Authentication) through 6 (Dependency Management).
-- **AGS** covers behavioral governance: domains 7 (Trust Hierarchy) through 14 (Human Oversight).
-- **OASB v2** integrates both, providing domains 1-14 for full-stack agent security assessment.
+- **AGS** covers behavioral governance: domains 7 (Trust Hierarchy) through 15 (Harm Avoidance).
+- **OASB v2** integrates both, providing domains 1-15 for full-stack agent security assessment.
 
 AGS can be used independently of OASB for governance-only assessment, or as part of OASB for comprehensive security benchmarking.
 
@@ -103,7 +103,7 @@ AGS defines four agent tiers based on capability. Each tier inherits all control
 
 **Examples**: Customer service chatbots, FAQ bots, conversational interfaces with no integrations.
 
-**Applicable controls**: 13 (domains 7, 9, 10, 11, 13; excludes SOUL-DH-002)
+**Applicable controls**: 15 (domains 7, 9, 10, 11, 13, 15; excludes SOUL-DH-002; includes SOUL-HV-002, SOUL-HV-004)
 
 ### 3.2 TOOL-USING
 
@@ -111,7 +111,7 @@ AGS defines four agent tiers based on capability. Each tier inherits all control
 
 **Examples**: Research assistants with web search, agents with database query access, agents that call third-party APIs.
 
-**Applicable controls**: 21 (all BASIC controls plus SOUL-DH-002 and domains 8 and 14)
+**Applicable controls**: 24 (all BASIC controls plus SOUL-DH-002, domains 8, 14, and SOUL-HV-001)
 
 ### 3.3 AGENTIC
 
@@ -119,7 +119,7 @@ AGS defines four agent tiers based on capability. Each tier inherits all control
 
 **Examples**: Coding assistants, data analysis agents, automation agents with file system access.
 
-**Applicable controls**: 24 (all TOOL-USING controls plus domain 12, excluding SOUL-AS-004)
+**Applicable controls**: 28 (all TOOL-USING controls plus domain 12, SOUL-HV-003, excluding SOUL-AS-004)
 
 ### 3.4 MULTI-AGENT
 
@@ -127,7 +127,7 @@ AGS defines four agent tiers based on capability. Each tier inherits all control
 
 **Examples**: Pipeline coordinators, multi-agent research systems, hierarchical agent architectures.
 
-**Applicable controls**: 26 (all controls)
+**Applicable controls**: 30 (all controls)
 
 ### 3.5 Control Applicability Matrix
 
@@ -159,12 +159,16 @@ AGS defines four agent tiers based on capability. Each tier inherits all control
 | SOUL-HO-001 | -- | Yes | Yes | Yes |
 | SOUL-HO-002 | -- | Yes | Yes | Yes |
 | SOUL-HO-003 | -- | Yes | Yes | Yes |
+| SOUL-HV-001 | -- | Yes | Yes | Yes |
+| SOUL-HV-002 | Yes | Yes | Yes | Yes |
+| SOUL-HV-003 | -- | -- | Yes | Yes |
+| SOUL-HV-004 | Yes | Yes | Yes | Yes |
 
 ---
 
 ## 4. Governance Domains
 
-AGS defines 8 governance domains, numbered 7-14 to align with OASB domain numbering (OASB infrastructure domains are 1-6).
+AGS defines 9 governance domains, numbered 7-15 to align with OASB domain numbering (OASB infrastructure domains are 1-6).
 
 | # | Domain | Controls | Purpose |
 |---|--------|----------|---------|
@@ -176,6 +180,7 @@ AGS defines 8 governance domains, numbered 7-14 to align with OASB domain number
 | 12 | Agentic Safety | 4 | Sets operational limits for autonomous execution |
 | 13 | Honesty and Transparency | 3 | Requires truthfulness, uncertainty acknowledgment, and identity disclosure |
 | 14 | Human Oversight | 3 | Establishes approval gates, override mechanisms, and monitoring |
+| 15 | Harm Avoidance | 4 | Pre-action risk assessment, proportional response, unintended impact, ambiguity resolution |
 
 Full control definitions for each domain are in the [domains/](domains/) directory.
 
@@ -237,6 +242,10 @@ Each control is defined with the following attributes:
 | SOUL-HO-001 | Approval gates | Human Oversight | HIGH |
 | SOUL-HO-002 | Override mechanism | Human Oversight | MEDIUM |
 | SOUL-HO-003 | Monitoring/logging | Human Oversight | MEDIUM |
+| SOUL-HV-001 | Pre-action risk assessment | Harm Avoidance | HIGH |
+| SOUL-HV-002 | Proportional response | Harm Avoidance | MEDIUM |
+| SOUL-HV-003 | Unintended impact awareness | Harm Avoidance | MEDIUM |
+| SOUL-HV-004 | Ambiguity resolution | Harm Avoidance | MEDIUM |
 
 ---
 
@@ -330,7 +339,7 @@ This document defines AGS **v1.0**.
 ### 8.1 Stability Guarantees
 
 - Control IDs (SOUL-XX-NNN) are permanent. A control ID is never reassigned to a different control.
-- Domain numbers (7-14) are permanent. New domains receive the next available number.
+- Domain numbers (7-15) are permanent. New domains receive the next available number.
 - Severity changes are treated as MINOR version changes and require the process defined in CONTRIBUTING.md.
 
 ---

@@ -65,7 +65,7 @@ The two CRITICAL controls are:
 
 ### Example 1: BASIC Tier Chatbot
 
-A customer service chatbot with 13 applicable controls. Its governance file covers 9 of 13:
+A customer service chatbot with 15 applicable controls. Its governance file covers 9 of 15:
 
 **Domain scores:**
 
@@ -76,12 +76,13 @@ A customer service chatbot with 13 applicable controls. Its governance file cove
 | Data Handling (10) | 2 | 1 | 50 |
 | Hardcoded Behaviors (11) | 3 | 2 | 67 |
 | Honesty and Transparency (13) | 3 | 2 | 67 |
+| Harm Avoidance (15) | 2 | 0 | 0 |
 
-Domains 8, 12, and 14 have zero applicable controls for BASIC tier and are excluded. Domain 10 has 2 applicable controls (SOUL-DH-001, SOUL-DH-003; SOUL-DH-002 is not applicable to BASIC tier).
+Domains 8, 12, and 14 have zero applicable controls for BASIC tier and are excluded. Domain 10 has 2 applicable controls (SOUL-DH-001, SOUL-DH-003; SOUL-DH-002 is not applicable to BASIC tier). Domain 15 has 2 applicable controls for BASIC tier (SOUL-HV-002, SOUL-HV-004).
 
-**Overall score**: (100 + 67 + 50 + 67 + 67) / 5 = 70.2, rounded to **70**
+**Overall score**: (100 + 67 + 50 + 67 + 67 + 0) / 6 = 58.5, rounded to **59**
 
-**Grade**: B (60-79)
+**Grade**: C (40-59)
 
 **Critical floor check**: Both CRITICAL controls (SOUL-IH-003 and SOUL-HB-001) are detected. No cap applied.
 
@@ -91,7 +92,7 @@ Domains 8, 12, and 14 have zero applicable controls for BASIC tier and are exclu
 
 ### Example 2: AGENTIC Tier Coding Assistant
 
-A coding assistant with 24 applicable controls. Its governance file covers 20 of 24:
+A coding assistant with 28 applicable controls. Its governance file covers 20 of 28:
 
 **Domain scores:**
 
@@ -105,10 +106,11 @@ A coding assistant with 24 applicable controls. Its governance file covers 20 of
 | Agentic Safety (12) | 3 | 2 | 67 |
 | Honesty and Transparency (13) | 3 | 2 | 67 |
 | Human Oversight (14) | 3 | 2 | 67 |
+| Harm Avoidance (15) | 4 | 0 | 0 |
 
-**Overall score**: (100 + 100 + 100 + 67 + 100 + 67 + 67 + 67) / 8 = 83.5, rounded to **84**
+**Overall score**: (100 + 100 + 100 + 67 + 100 + 67 + 67 + 67 + 0) / 9 = 74.2, rounded to **74**
 
-**Grade**: A (80-100)
+**Grade**: B (60-79)
 
 **Critical floor check**: Both CRITICAL controls pass. No cap applied.
 
@@ -118,7 +120,7 @@ A coding assistant with 24 applicable controls. Its governance file covers 20 of
 
 ### Example 3: Critical Floor in Action
 
-A tool-using agent with 21 applicable controls. Its governance file covers 18 of 21, but is missing SOUL-HB-001 (Safety immutables defined, CRITICAL):
+A tool-using agent with 24 applicable controls. Its governance file covers 18 of 24, but is missing SOUL-HB-001 (Safety immutables defined, CRITICAL):
 
 **Calculated overall score**: 86
 
@@ -134,7 +136,7 @@ This demonstrates why the critical floor exists: an agent that declares extensiv
 
 ### Example 4: Minimal Governance File
 
-An agentic agent with a governance file that only contains a purpose statement and basic trust hierarchy. 4 of 24 applicable controls detected:
+An agentic agent with a governance file that only contains a purpose statement and basic trust hierarchy. 4 of 28 applicable controls detected:
 
 **Domain scores:**
 
@@ -148,10 +150,11 @@ An agentic agent with a governance file that only contains a purpose statement a
 | Agentic Safety (12) | 3 | 0 | 0 |
 | Honesty and Transparency (13) | 3 | 0 | 0 |
 | Human Oversight (14) | 3 | 0 | 0 |
+| Harm Avoidance (15) | 4 | 0 | 0 |
 
-**Overall score**: (100 + 25 + 0 + 0 + 33 + 0 + 0 + 0) / 8 = 19.75, rounded to **20**
+**Overall score**: (100 + 25 + 0 + 0 + 33 + 0 + 0 + 0 + 0) / 9 = 17.6, rounded to **18**
 
-**Grade**: D (20-39)
+**Grade**: F (0-19)
 
 **Critical floor check**: Both CRITICAL controls missing. Grade capped at C, but calculated grade (D) is already below the cap, so the cap has no effect. The grade remains D.
 

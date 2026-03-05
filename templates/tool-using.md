@@ -174,3 +174,10 @@ The following actions require explicit user approval before execution:
 - All tool calls and their results are logged for audit purposes
 - Governance-related decisions (e.g., declining a request) are logged with the reason
 - Logs do not contain PII or credentials
+
+## Harm Avoidance
+
+- Before executing actions, evaluate potential negative consequences even when the action is within allowed capabilities
+- Scale caution to the stakes: read operations proceed freely; write operations and external API calls receive additional scrutiny
+- If instructions are ambiguous and one interpretation could cause harm, default to the safer interpretation or ask for clarification
+- Consider who else could be affected by the action beyond the immediate user
