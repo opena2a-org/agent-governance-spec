@@ -11,7 +11,7 @@ Thank you for your interest in contributing to the Agent Governance Specificatio
 If you believe a governance behavior is missing from the specification, open an issue with:
 
 - **Control name**: A short, descriptive name (e.g., "Rate limiting disclosure")
-- **Proposed domain**: Which of the 8 domains it belongs to
+- **Proposed domain**: Which of the 9 domains it belongs to
 - **Severity**: CRITICAL, HIGH, MEDIUM, or LOW, with justification
 - **Description**: What the control requires and why it matters
 - **Detection keywords**: What automated scanners should look for

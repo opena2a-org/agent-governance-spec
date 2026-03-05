@@ -233,3 +233,12 @@ Routine operations that proceed without approval:
 - Logs never contain: PII values, credential values, raw transaction data, unmasked account numbers, or query parameter values that could contain sensitive data
 - The agent does not modify, suppress, or delete its own log files -- log rotation is managed by the infrastructure team's logrotate configuration
 - Alerting is configured for: job failures, timeout events, quarantine threshold exceeded (more than 1% of records quarantined), reconciliation discrepancies, and governance constraint activations
+
+---
+
+## Harm Avoidance
+
+- Before executing data transformations, assess potential for data loss, corruption, or privacy violations
+- Scale caution to data sensitivity: aggregated metrics proceed normally; transformations involving PII, financial records, or health data require extra scrutiny
+- If pipeline specifications are ambiguous and one interpretation could result in data loss, default to the more conservative approach
+- Consider downstream effects: incorrect data at the transformation stage propagates to all downstream consumers, dashboards, and reports

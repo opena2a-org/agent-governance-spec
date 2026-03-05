@@ -2,7 +2,7 @@
 
 The first open specification for AI agent behavioral governance.
 
-AGS defines what goes in a governance file (SOUL.md), how to measure governance coverage across eight behavioral domains, and three conformance levels for auditing agent deployments. It is maintained by [OpenA2A](https://opena2a.org) and licensed under Apache-2.0.
+AGS defines what goes in a governance file (SOUL.md), how to measure governance coverage across nine behavioral domains, and three conformance levels for auditing agent deployments. It is maintained by [OpenA2A](https://opena2a.org) and licensed under Apache-2.0.
 
 ---
 
@@ -52,7 +52,7 @@ npx hackmyagent scan-soul
 
 ## Specification Overview
 
-AGS defines **8 governance domains** containing **26 controls** that cover the behavioral surface area of an AI agent deployment.
+AGS defines **9 governance domains** containing **30 controls** that cover the behavioral surface area of an AI agent deployment.
 
 | Domain | ID | Controls | What It Governs |
 |--------|-----|----------|----------------|
@@ -64,6 +64,7 @@ AGS defines **8 governance domains** containing **26 controls** that cover the b
 | Agentic Safety | 12 | 4 | Iteration limits, budget caps, timeouts, reversibility |
 | Honesty and Transparency | 13 | 3 | Uncertainty acknowledgment, factual accuracy, identity disclosure |
 | Human Oversight | 14 | 3 | Approval gates, override mechanisms, monitoring requirements |
+| Harm Avoidance | 15 | 4 | Pre-action risk assessment, proportional response, unintended impact, ambiguity resolution |
 
 Each control has a severity level (CRITICAL, HIGH, MEDIUM, or LOW) and a set of detection keywords for automated scanning. See [specification.md](specification.md) for the full formal specification, and the [domains/](domains/) directory for detailed control definitions.
 
@@ -89,10 +90,10 @@ Not all agents need all controls. AGS defines four tiers based on agent capabili
 
 | Tier | Description | Applicable Controls | Example |
 |------|-------------|-------------------|---------|
-| BASIC | Conversational agents with no tool access | 13 controls | Customer service chatbot |
-| TOOL-USING | Agents that call APIs or use tools | 21 controls | Research assistant with web search |
-| AGENTIC | Autonomous agents with multi-step execution | 24 controls | Coding assistant with file system access |
-| MULTI-AGENT | Orchestrators that delegate to other agents | 26 controls (all) | Multi-agent pipeline coordinator |
+| BASIC | Conversational agents with no tool access | 15 controls | Customer service chatbot |
+| TOOL-USING | Agents that call APIs or use tools | 24 controls | Research assistant with web search |
+| AGENTIC | Autonomous agents with multi-step execution | 28 controls | Coding assistant with file system access |
+| MULTI-AGENT | Orchestrators that delegate to other agents | 30 controls (all) | Multi-agent pipeline coordinator |
 
 See [specification.md](specification.md) Section 3 for tier definitions and the control applicability matrix.
 
@@ -120,7 +121,7 @@ AGS is designed to complement, not compete with, existing specifications:
 - **Agent Skills (agentskills.io)**: Defines agent capabilities and procedural knowledge. AGS defines behavioral constraints. Skills say what the agent can do; AGS says what it must not do.
 - **NIST AI Agent Standards**: Covers infrastructure, identity, and interoperability. AGS covers behavioral safety. They are complementary layers.
 - **AGENTS.md**: Instructions for AI coding agents about how to work with a codebase. AGS defines safety and governance boundaries. An agent can follow both AGENTS.md (for coding conventions) and SOUL.md (for safety constraints).
-- **OASB (Open Agent Security Benchmark)**: OASB v1 covers infrastructure security (domains 1-6). AGS covers behavioral governance (domains 7-14). Together they provide full-stack agent security assessment.
+- **OASB (Open Agent Security Benchmark)**: OASB v1 covers infrastructure security (domains 1-6). AGS covers behavioral governance (domains 7-15). Together they provide full-stack agent security assessment.
 - **Awesome Agent Souls**: A [curated collection of 100+ SOUL.md templates](https://github.com/opena2a-org/awesome-agent-souls) organized by role, industry, organization type, and fleet. Use these as starting points instead of writing governance files from scratch.
 
 ---
@@ -144,7 +145,7 @@ npx hackmyagent scan-soul --json
 
 ### OASB v2
 
-[OASB](https://github.com/opena2a-org/oasb) v2 integrates AGS domains 7-14 alongside infrastructure domains 1-6 for comprehensive agent security benchmarking.
+[OASB](https://github.com/opena2a-org/oasb) v2 integrates AGS domains 7-15 alongside infrastructure domains 1-6 for comprehensive agent security benchmarking.
 
 ---
 
@@ -230,6 +231,7 @@ agent-governance-spec/
     12-agentic-safety.md         Domain 12: Agentic Safety
     13-honesty-transparency.md   Domain 13: Honesty and Transparency
     14-human-oversight.md        Domain 14: Human Oversight
+    15-harm-avoidance.md         Domain 15: Harm Avoidance
   templates/
     basic.md                  Minimal SOUL.md for chatbots
     tool-using.md             SOUL.md for tool-using agents

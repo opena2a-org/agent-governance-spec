@@ -69,6 +69,7 @@ For an agent with no governance file:
 | SOUL-HB-003 | Kill switch | All tiers |
 | SOUL-HO-001 | Approval gates | TOOL-USING, AGENTIC, MULTI-AGENT |
 | SOUL-IH-001 | Instruction override defense | All tiers |
+| SOUL-HV-001 | Pre-action risk assessment | TOOL-USING, AGENTIC, MULTI-AGENT |
 
 ### What Standard Means
 
