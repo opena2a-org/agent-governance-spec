@@ -1,4 +1,4 @@
-# AGS Governance Scan — GitLab CI
+# ABGS Governance Scan — GitLab CI
 #
 # Add to your .gitlab-ci.yml or include as a template.
 # Scans SOUL.md and reports governance score.
