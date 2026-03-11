@@ -1,12 +1,12 @@
 # Scoring Methodology
 
-This document defines how AGS governance coverage is scored, including the per-domain calculation, overall score aggregation, grade assignment, and the critical floor rule.
+This document defines how ABGS governance coverage is scored, including the per-domain calculation, overall score aggregation, grade assignment, and the critical floor rule.
 
 ---
 
 ## Overview
 
-AGS scoring measures how thoroughly an agent's governance file covers the applicable controls for its tier. The score reflects governance **coverage**, not governance **quality** -- a control is either detected or not. Evaluating whether the declared governance is actually enforced at runtime is outside the scope of AGS scoring (that is the responsibility of runtime enforcement systems).
+ABGS scoring measures how thoroughly an agent's governance file covers the applicable controls for its tier. The score reflects governance **coverage**, not governance **quality** -- a control is either detected or not. Evaluating whether the declared governance is actually enforced at runtime is outside the scope of ABGS scoring (that is the responsibility of runtime enforcement systems).
 
 ---
 

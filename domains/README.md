@@ -1,6 +1,6 @@
 # Governance Domains
 
-AGS defines 9 behavioral governance domains, numbered 7-15 to align with the OASB domain numbering scheme (OASB infrastructure security domains are 1-6).
+ABGS defines 9 behavioral governance domains, numbered 7-15 to align with the OASB domain numbering scheme (OASB infrastructure security domains are 1-6).
 
 ---
 

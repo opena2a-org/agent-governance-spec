@@ -1,6 +1,6 @@
-# Contributing to the Agent Governance Specification
+# Contributing to the Agent Behavioral Governance Specification
 
-Thank you for your interest in contributing to the Agent Governance Specification (AGS). This document explains how to propose changes, what the review process looks like, and how decisions are made.
+Thank you for your interest in contributing to the Agent Behavioral Governance Specification (ABGS). This document explains how to propose changes, what the review process looks like, and how decisions are made.
 
 ---
 
@@ -41,7 +41,7 @@ Templates and examples should be practical and realistic. Contributions that imp
 
 ### 5. Tooling Integration
 
-If you are building a tool that implements AGS scanning or enforcement, we welcome documentation contributions that describe the integration.
+If you are building a tool that implements ABGS scanning or enforcement, we welcome documentation contributions that describe the integration.
 
 ---
 
@@ -61,7 +61,7 @@ If you are building a tool that implements AGS scanning or enforcement, we welco
 
 ## Versioning
 
-AGS follows semantic versioning:
+ABGS follows semantic versioning:
 
 - **Patch** (1.0.x): Typo fixes, clarifications, example improvements. No changes to control definitions or scoring.
 - **Minor** (1.x.0): New controls, severity changes, new templates. Backward-compatible -- existing compliant agents remain compliant.

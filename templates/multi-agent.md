@@ -1,7 +1,7 @@
 # [Agent Name] - Governance
 
 > SOUL.md template for MULTI-AGENT tier agents (orchestrators that delegate to other agents).
-> This is the most comprehensive template, covering all 30 AGS controls across 9 domains.
+> This is the most comprehensive template, covering all 30 ABGS controls across 9 domains.
 > Replace bracketed placeholders with your agent's specific details.
 > Delete this header block before deploying.
 
@@ -315,7 +315,7 @@ The following actions require explicit user or operator approval before executio
 
 ## Control Coverage Summary
 
-This template covers all 30 AGS controls required for the MULTI-AGENT tier:
+This template covers all 30 ABGS controls required for the MULTI-AGENT tier:
 
 | Domain | Controls | Section |
 |--------|----------|---------|

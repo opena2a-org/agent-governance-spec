@@ -1,4 +1,4 @@
-# AGS Governance Scan — GitHub Action
+# ABGS Governance Scan — GitHub Action
 #
 # Add this to your repo at .github/workflows/governance.yml
 # Scans SOUL.md on every PR and comments with governance score.
@@ -99,7 +99,7 @@ jobs:
             **File:** \`${file}\`
             ${domainTable}
 
-            *Scanned with [HackMyAgent](https://github.com/opena2a-org/hackmyagent) against the [Agent Governance Specification](https://github.com/opena2a-org/agent-governance-spec).*
+            *Scanned with [HackMyAgent](https://github.com/opena2a-org/hackmyagent) against the [Agent Behavioral Governance Specification](https://github.com/opena2a-org/agent-governance-spec).*
 
             To improve your score: \`npx hackmyagent harden-soul\`
             `.replace(/            /g, '');

@@ -1,4 +1,4 @@
-# Agent Governance Specification
+# Agent Behavioral Governance Specification
 
 **Version**: 1.0
 **Status**: Draft
@@ -11,15 +11,15 @@
 
 ### 1.1 Purpose
 
-The Agent Governance Specification (AGS) defines a standard for declaring, measuring, and auditing the behavioral governance of AI agent deployments. It provides a structured format for specifying what an agent will and will not do, who it trusts, how it handles data, and when it requires human oversight.
+The Agent Behavioral Governance Specification (ABGS) defines a standard for declaring, measuring, and auditing the behavioral governance of AI agent deployments. It provides a structured format for specifying what an agent will and will not do, who it trusts, how it handles data, and when it requires human oversight.
 
 ### 1.2 Scope
 
-AGS governs the **deployment layer** -- the behavioral contract of a specific agent instance. It does not govern:
+ABGS governs the **deployment layer** -- the behavioral contract of a specific agent instance. It does not govern:
 
-- **Foundation model behavior**: That is the responsibility of model specifications (Anthropic's principal hierarchy, OpenAI's model spec). An agent can comply with AGS regardless of which underlying model it uses.
-- **Agent persona or personality**: That is the domain of persona standards such as SoulSpec. AGS defines safety and governance constraints, not character traits.
-- **Runtime enforcement**: That is the responsibility of runtime platforms and structural governance frameworks such as OAGS. AGS declares intent; runtime systems enforce it.
+- **Foundation model behavior**: That is the responsibility of model specifications (Anthropic's principal hierarchy, OpenAI's model spec). An agent can comply with ABGS regardless of which underlying model it uses.
+- **Agent persona or personality**: That is the domain of persona standards such as SoulSpec. ABGS defines safety and governance constraints, not character traits.
+- **Runtime enforcement**: That is the responsibility of runtime platforms and structural governance frameworks such as OABGS. ABGS declares intent; runtime systems enforce it.
 - **Infrastructure security**: That is covered by OASB domains 1-6 (authentication, authorization, transport security, logging, configuration, dependency management).
 
 ### 1.3 Relationship to OASB
@@ -27,10 +27,10 @@ AGS governs the **deployment layer** -- the behavioral contract of a specific ag
 The Open Agent Security Benchmark (OASB) provides a comprehensive security assessment framework for AI agents:
 
 - **OASB v1** covers infrastructure security: domains 1 (Authentication) through 6 (Dependency Management).
-- **AGS** covers behavioral governance: domains 7 (Trust Hierarchy) through 15 (Harm Avoidance).
+- **ABGS** covers behavioral governance: domains 7 (Trust Hierarchy) through 15 (Harm Avoidance).
 - **OASB v2** integrates both, providing domains 1-15 for full-stack agent security assessment.
 
-AGS can be used independently of OASB for governance-only assessment, or as part of OASB for comprehensive security benchmarking.
+ABGS can be used independently of OASB for governance-only assessment, or as part of OASB for comprehensive security benchmarking.
 
 ### 1.4 Terminology
 
@@ -95,7 +95,7 @@ Governance files SHOULD be committed to version control alongside the agent's so
 
 ## 3. Agent Tiers
 
-AGS defines four agent tiers based on capability. Each tier inherits all controls from lower tiers and adds tier-specific controls.
+ABGS defines four agent tiers based on capability. Each tier inherits all controls from lower tiers and adds tier-specific controls.
 
 ### 3.1 BASIC
 
@@ -168,7 +168,7 @@ AGS defines four agent tiers based on capability. Each tier inherits all control
 
 ## 4. Governance Domains
 
-AGS defines 9 governance domains, numbered 7-15 to align with OASB domain numbering (OASB infrastructure domains are 1-6).
+ABGS defines 9 governance domains, numbered 7-15 to align with OASB domain numbering (OASB infrastructure domains are 1-6).
 
 | # | Domain | Controls | Purpose |
 |---|--------|----------|---------|
@@ -328,13 +328,13 @@ See [conformance.md](conformance.md) for the full conformance audit procedure an
 
 ## 8. Versioning
 
-AGS follows semantic versioning (MAJOR.MINOR.PATCH):
+ABGS follows semantic versioning (MAJOR.MINOR.PATCH):
 
 - **MAJOR**: Breaking changes to domain structure, scoring algorithm, or conformance level definitions
 - **MINOR**: New controls, severity changes, new agent tiers (backward-compatible)
 - **PATCH**: Clarifications, typo fixes, example improvements (no specification changes)
 
-This document defines AGS **v1.0**.
+This document defines ABGS **v1.0**.
 
 ### 8.1 Stability Guarantees
 
@@ -385,11 +385,11 @@ This structure is a recommendation, not a requirement. Scanners detect controls 
 
 ## Appendix B: Relationship to Model Specifications
 
-Model specifications (such as Anthropic's principal hierarchy or OpenAI's model spec) define how the foundation model should behave across all deployments. AGS defines how a specific agent deployment should behave.
+Model specifications (such as Anthropic's principal hierarchy or OpenAI's model spec) define how the foundation model should behave across all deployments. ABGS defines how a specific agent deployment should behave.
 
 Key distinctions:
 
-| Aspect | Model Specification | AGS |
+| Aspect | Model Specification | ABGS |
 |--------|-------------------|-----|
 | Scope | All uses of the model | One specific agent deployment |
 | Author | Model provider | Agent developer or operator |
@@ -397,4 +397,4 @@ Key distinctions:
 | Portability | Tied to one model | Model-agnostic |
 | Auditability | Opaque (training-time) | Transparent (file in repository) |
 
-AGS governance files can reference and build on model-level specifications. For example, an AGS trust hierarchy might state "Follow the Anthropic principal hierarchy: developer > operator > user" while adding deployment-specific constraints.
+ABGS governance files can reference and build on model-level specifications. For example, an ABGS trust hierarchy might state "Follow the Anthropic principal hierarchy: developer > operator > user" while adding deployment-specific constraints.

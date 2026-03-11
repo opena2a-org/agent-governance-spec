@@ -1,6 +1,6 @@
-# AGS Integrations
+# ABGS Integrations
 
-Ready-to-use integrations for enforcing the Agent Governance Specification in your CI/CD pipeline.
+Ready-to-use integrations for enforcing the Agent Behavioral Governance Specification in your CI/CD pipeline.
 
 ## GitHub Actions
 
@@ -41,16 +41,16 @@ variables:
 Add a governance badge to your README:
 
 ```markdown
-[![Agent Governance](https://img.shields.io/badge/AGS-Conformant-teal)](https://github.com/opena2a-org/agent-governance-spec)
+[![Agent Governance](https://img.shields.io/badge/ABGS-Conformant-teal)](https://github.com/opena2a-org/agent-governance-spec)
 ```
 
 After running `scan-soul`, use the appropriate badge for your conformance level:
 
 | Level | Badge |
 |-------|-------|
-| Essential | `![AGS Essential](https://img.shields.io/badge/AGS-Essential-blue)` |
-| Standard | `![AGS Standard](https://img.shields.io/badge/AGS-Standard-teal)` |
-| Hardened | `![AGS Hardened](https://img.shields.io/badge/AGS-Hardened-green)` |
+| Essential | `![ABGS Essential](https://img.shields.io/badge/ABGS-Essential-blue)` |
+| Standard | `![ABGS Standard](https://img.shields.io/badge/ABGS-Standard-teal)` |
+| Hardened | `![ABGS Hardened](https://img.shields.io/badge/ABGS-Hardened-green)` |
 
 ## Pre-commit Hook
 
