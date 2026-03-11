@@ -1,8 +1,8 @@
-# Agent Governance Specification (AGS)
+# Agent Behavioral Governance Specification (ABGS)
 
 The first open specification for AI agent behavioral governance.
 
-AGS defines what goes in a governance file (SOUL.md), how to measure governance coverage across nine behavioral domains, and three conformance levels for auditing agent deployments. It is maintained by [OpenA2A](https://opena2a.org) and licensed under Apache-2.0.
+ABGS defines what goes in a governance file (SOUL.md), how to measure governance coverage across nine behavioral domains, and three conformance levels for auditing agent deployments. It is maintained by [OpenA2A](https://opena2a.org) and licensed under Apache-2.0.
 
 ---
 
@@ -17,9 +17,9 @@ The AI agent ecosystem has standards for several layers of the stack, but behavi
 | Agent capabilities | [Agent Skills](https://agentskills.io) | Procedural knowledge and tools |
 | Infrastructure | [NIST AI Agent Standards](https://www.nist.gov/artificial-intelligence) | Identity, interoperability, and infrastructure |
 | Coding instructions | [AGENTS.md](https://github.com/anthropics/agents-md) | Instructions for AI coding agents |
-| **Behavioral governance** | **AGS (this specification)** | **Per-agent safety constraints, scope boundaries, oversight requirements** |
+| **Behavioral governance** | **ABGS (this specification)** | **Per-agent safety constraints, scope boundaries, oversight requirements** |
 
-AGS fills the layer between model specifications (what the model can do) and deployment behavior (what the agent actually does). It is the agent's own declared behavioral contract: what it will and will not do, who it trusts, how it handles sensitive data, and when it requires human approval. AGS also provides runtime enforcement through automated scanning and CI/CD integration.
+ABGS fills the layer between model specifications (what the model can do) and deployment behavior (what the agent actually does). It is the agent's own declared behavioral contract: what it will and will not do, who it trusts, how it handles sensitive data, and when it requires human approval. ABGS also provides runtime enforcement through automated scanning and CI/CD integration.
 
 ---
 
@@ -52,7 +52,7 @@ npx hackmyagent scan-soul
 
 ## Specification Overview
 
-AGS defines **9 governance domains** containing **30 controls** that cover the behavioral surface area of an AI agent deployment.
+ABGS defines **9 governance domains** containing **30 controls** that cover the behavioral surface area of an AI agent deployment.
 
 | Domain | ID | Controls | What It Governs |
 |--------|-----|----------|----------------|
@@ -72,7 +72,7 @@ Each control has a severity level (CRITICAL, HIGH, MEDIUM, or LOW) and a set of 
 
 ## Conformance Levels
 
-AGS defines three conformance levels for auditing governance coverage:
+ABGS defines three conformance levels for auditing governance coverage:
 
 | Level | Requirements | Typical Use Case |
 |-------|-------------|-----------------|
@@ -86,7 +86,7 @@ See [conformance.md](conformance.md) for detailed requirements and audit procedu
 
 ## Agent Tiers
 
-Not all agents need all controls. AGS defines four tiers based on agent capability:
+Not all agents need all controls. ABGS defines four tiers based on agent capability:
 
 | Tier | Description | Applicable Controls | Example |
 |------|-------------|-------------------|---------|
@@ -114,14 +114,14 @@ See [scoring.md](scoring.md) for the full scoring methodology with worked exampl
 
 ## Related Work
 
-AGS is designed to complement, not compete with, existing specifications:
+ABGS is designed to complement, not compete with, existing specifications:
 
-- **Anthropic Soul / OpenAI Model Spec**: These govern the foundation model's behavior. AGS governs the deployed agent built on top of that model. An agent can comply with AGS regardless of which model it uses.
-- **SoulSpec (soulspec.org)**: Defines agent persona and personality. AGS defines agent governance. A SOUL.md can coexist with a SoulSpec persona file -- they address different concerns.
-- **Agent Skills (agentskills.io)**: Defines agent capabilities and procedural knowledge. AGS defines behavioral constraints. Skills say what the agent can do; AGS says what it must not do.
-- **NIST AI Agent Standards**: Covers infrastructure, identity, and interoperability. AGS covers behavioral safety. They are complementary layers.
-- **AGENTS.md**: Instructions for AI coding agents about how to work with a codebase. AGS defines safety and governance boundaries. An agent can follow both AGENTS.md (for coding conventions) and SOUL.md (for safety constraints).
-- **OASB (Open Agent Security Benchmark)**: OASB v1 covers infrastructure security (domains 1-6). AGS covers behavioral governance (domains 7-15). Together they provide full-stack agent security assessment.
+- **Anthropic Soul / OpenAI Model Spec**: These govern the foundation model's behavior. ABGS governs the deployed agent built on top of that model. An agent can comply with ABGS regardless of which model it uses.
+- **SoulSpec (soulspec.org)**: Defines agent persona and personality. ABGS defines agent governance. A SOUL.md can coexist with a SoulSpec persona file -- they address different concerns.
+- **Agent Skills (agentskills.io)**: Defines agent capabilities and procedural knowledge. ABGS defines behavioral constraints. Skills say what the agent can do; ABGS says what it must not do.
+- **NIST AI Agent Standards**: Covers infrastructure, identity, and interoperability. ABGS covers behavioral safety. They are complementary layers.
+- **AGENTS.md**: Instructions for AI coding agents about how to work with a codebase. ABGS defines safety and governance boundaries. An agent can follow both AGENTS.md (for coding conventions) and SOUL.md (for safety constraints).
+- **OASB (Open Agent Security Benchmark)**: OASB v1 covers infrastructure security (domains 1-6). ABGS covers behavioral governance (domains 7-15). Together they provide full-stack agent security assessment.
 - **Awesome Agent Souls**: A [curated collection of 100+ SOUL.md templates](https://github.com/opena2a-org/awesome-agent-souls) organized by role, industry, organization type, and fleet. Use these as starting points instead of writing governance files from scratch.
 
 ---
@@ -130,7 +130,7 @@ AGS is designed to complement, not compete with, existing specifications:
 
 ### HackMyAgent
 
-[HackMyAgent](https://github.com/opena2a-org/hackmyagent) provides automated scanning and hardening for AGS governance files:
+[HackMyAgent](https://github.com/opena2a-org/hackmyagent) provides automated scanning and hardening for ABGS governance files:
 
 ```bash
 # Scan an existing governance file
@@ -145,7 +145,7 @@ npx hackmyagent scan-soul --json
 
 ### OASB v2
 
-[OASB](https://github.com/opena2a-org/oasb) v2 integrates AGS domains 7-15 alongside infrastructure domains 1-6 for comprehensive agent security benchmarking.
+[OASB](https://github.com/opena2a-org/oasb) v2 integrates ABGS domains 7-15 alongside infrastructure domains 1-6 for comprehensive agent security benchmarking.
 
 ---
 
@@ -179,14 +179,14 @@ jobs:
 Show your governance conformance:
 
 ```markdown
-[![AGS Conformant](https://img.shields.io/badge/AGS-Standard-teal)](https://github.com/opena2a-org/agent-governance-spec)
+[![ABGS Conformant](https://img.shields.io/badge/ABGS-Standard-teal)](https://github.com/opena2a-org/agent-governance-spec)
 ```
 
 | Level | Badge |
 |-------|-------|
-| Essential | ![AGS Essential](https://img.shields.io/badge/AGS-Essential-blue) |
-| Standard | ![AGS Standard](https://img.shields.io/badge/AGS-Standard-teal) |
-| Hardened | ![AGS Hardened](https://img.shields.io/badge/AGS-Hardened-green) |
+| Essential | ![ABGS Essential](https://img.shields.io/badge/ABGS-Essential-blue) |
+| Standard | ![ABGS Standard](https://img.shields.io/badge/ABGS-Standard-teal) |
+| Hardened | ![ABGS Hardened](https://img.shields.io/badge/ABGS-Hardened-green) |
 
 ---
 
@@ -205,7 +205,7 @@ Show your governance conformance:
 3. Raise threshold over time: 40 (Essential) -> 60 (Standard) -> 75 (Hardened)
 
 **For organizations**:
-1. Set minimum AGS conformance level per agent risk tier
+1. Set minimum ABGS conformance level per agent risk tier
 2. Use JSON output (`--format json`) for compliance dashboards
 3. Integrate with existing GRC tooling via structured scan results
 
